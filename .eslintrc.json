@@ -1,3 +1,9 @@
 {
-    "extends": ["@dyrkow", "@dyrkow/eslint-config-typescript"]
+    "root": true,
+    "extends": ["@dyrkow", "@dyrkow/eslint-config-typescript"],
+    "rules": {
+        "lines-around-comment": "off",
+        "class-methods-use-this": "off",
+        "space-before-function-paren": "off"
+    }
 }

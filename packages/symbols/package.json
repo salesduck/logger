@@ -1,0 +1,20 @@
+{
+    "name": "@salesduck/symbols-logs",
+    "version": "1.0.0",
+    "main": "build/index.js",
+    "types": "build/index.d.ts",
+    "license": "MIT",
+    "files": [
+        "build",
+        "!**/*spec.*"
+    ],
+    "scripts": {
+        "clean": "rm -rf build && rm -rf ./tsconfig.build.tsbuildinfo",
+        "build": "yarn clean && tsc --project ./tsconfig.build.json && tscpaths -p ./tsconfig.build.json -s ./src -o ./build",
+        "lint": "yarn eslint --fix ./src"
+    },
+    "devDependencies": {
+        "tscpaths": "^0.0.9",
+        "typescript": "^4.9.4"
+    }
+}

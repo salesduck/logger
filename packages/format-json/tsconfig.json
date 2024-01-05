@@ -5,6 +5,7 @@
             "@project/*": ["./src/*"]
         },
         "allowSyntheticDefaultImports": true,
+        "moduleResolution": "Node",
         "target": "es5",
         "skipLibCheck": true,
         "composite": true,
