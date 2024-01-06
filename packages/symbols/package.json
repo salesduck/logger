@@ -14,6 +14,7 @@
         "lint": "yarn eslint --fix ./src"
     },
     "devDependencies": {
+        "standard-version": "^9.3.0",
         "tscpaths": "^0.0.9",
         "typescript": "^4.9.4"
     }
