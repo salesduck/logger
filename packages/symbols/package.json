@@ -12,7 +12,7 @@
         "clean": "rm -rf build && rm -rf ./tsconfig.build.tsbuildinfo",
         "build": "yarn clean && tsc --project ./tsconfig.build.json && tscpaths -p ./tsconfig.build.json -s ./src -o ./build",
         "lint": "yarn eslint --fix ./src",
-        "release": "standard-version -t symbols-logs-v"
+        "release": "standard-version -t symbols-logs-v --path ./"
     },
     "devDependencies": {
         "standard-version": "^9.3.0",
