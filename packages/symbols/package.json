@@ -11,7 +11,8 @@
     "scripts": {
         "clean": "rm -rf build && rm -rf ./tsconfig.build.tsbuildinfo",
         "build": "yarn clean && tsc --project ./tsconfig.build.json && tscpaths -p ./tsconfig.build.json -s ./src -o ./build",
-        "lint": "yarn eslint --fix ./src"
+        "lint": "yarn eslint --fix ./src",
+        "release": "standard-version"
     },
     "devDependencies": {
         "standard-version": "^9.3.0",
