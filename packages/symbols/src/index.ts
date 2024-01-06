@@ -20,10 +20,14 @@ export const LEVEL = Symbol.for('level');
 export type LogLevel = { name: string; priority: number };
 
 /**
+ * Additional information passed with log
+ */
+export type Meta = Record<string, unknown>;
+
+/**
  * Log data passed to any log method
  */
-export type Log = {
-    [key: string]: unknown;
+export type Log = Meta & {
     message: string;
 };
 
