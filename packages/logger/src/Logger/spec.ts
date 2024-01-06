@@ -1,4 +1,4 @@
-import { FormatterLog } from '@salesduck/symbols-logs';
+import { FormatterLog, MESSAGE, LEVEL } from '@salesduck/symbols-logs';
 import { Transport } from '@salesduck/transport-logs';
 
 import { Test } from './mock';
@@ -10,13 +10,13 @@ class TestTransport extends Transport {
 }
 
 describe('Logger', () => {
+    const transport = new TestTransport({ level: 2 });
+
+    const logger = new Test({ transports: [transport] });
+
+    const func = () => Promise.resolve();
+
     describe('log ::', () => {
-        const transport = new TestTransport({ level: 2 });
-
-        const logger = new Test({ transports: [transport] });
-
-        const func = () => Promise.resolve();
-
         it('use transport by priority', () => {
             const mockedLog = jest.fn(func);
 
@@ -35,6 +35,28 @@ describe('Logger', () => {
             logger.log({ name: 'info', priority: 3 }, { message: 'Hello' });
 
             expect(mockedLog).not.toHaveBeenCalled();
+        });
+    });
+
+    describe('meta ::', () => {
+        it('add some meta to logs', () => {
+            const mockedLog = jest.fn(func);
+
+            transport.log = mockedLog;
+
+            logger.meta({ hello: 'world' });
+
+            logger.log({ name: 'info', priority: 1 }, { message: 'Hello' });
+
+            expect(mockedLog).toBeCalledWith({
+                [MESSAGE]: 'Hello',
+                [LEVEL]: {
+                    name: 'info',
+                    priority: 1
+                },
+                message: 'Hello',
+                hello: 'world'
+            });
         });
     });
 });

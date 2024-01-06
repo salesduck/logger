@@ -1,7 +1,8 @@
-import { LogLevel, Log, LEVEL } from '@salesduck/symbols-logs';
+import { LogLevel, Log, Meta, LEVEL } from '@salesduck/symbols-logs';
 import { ILogTransport } from '@salesduck/transport-logs';
 
 export type LoggerOptions = {
+    meta?: Meta;
     transports?: ILogTransport[];
 };
 
@@ -31,9 +32,18 @@ export abstract class Logger {
             transport.log(
                 transport.getFormat().format({
                     ...log,
+                    ...this.options.meta,
                     [LEVEL]: level
                 })
             );
         }
+    }
+
+    /**
+     * Allow you to add or replace additional information
+     * for each log
+     */
+    meta(meta: Meta = this.options.meta): void {
+        this.options.meta = meta;
     }
 }
