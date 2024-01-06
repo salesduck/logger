@@ -19,7 +19,7 @@
         "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand"
     },
     "dependencies": {
-        "@salesduck/symbols-logs": "1.0.0"
+        "@salesduck/symbols-logs": "1.1.0"
     },
     "devDependencies": {
         "standard-version": "^9.3.0",

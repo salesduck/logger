@@ -20,7 +20,7 @@
     },
     "dependencies": {
         "@salesduck/format-logs": "1.0.0",
-        "@salesduck/symbols-logs": "1.0.0"
+        "@salesduck/symbols-logs": "1.1.0"
     },
     "devDependencies": {
         "standard-version": "^9.3.0",

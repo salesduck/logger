@@ -21,7 +21,7 @@
         "node": "18"
     },
     "dependencies": {
-        "@salesduck/symbols-logs": "1.0.0",
+        "@salesduck/symbols-logs": "1.1.0",
         "@salesduck/transport-logs": "1.0.0"
     },
     "devDependencies": {
