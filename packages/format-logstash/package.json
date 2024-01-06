@@ -13,7 +13,7 @@
         "clean": "rm -rf build && rm -rf ./tsconfig.build.tsbuildinfo",
         "build": "yarn clean && tsc --project ./tsconfig.build.json && tscpaths -p ./tsconfig.build.json -s ./src -o ./build",
         "lint": "yarn eslint --fix ./src",
-        "release": "standard-version",
+        "release": "standard-version -t format-logstash-v",
         "test": "jest",
         "test:watch": "jest --watch",
         "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand"
