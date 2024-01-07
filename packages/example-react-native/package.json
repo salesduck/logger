@@ -2,6 +2,7 @@
   "name": "@salesduck/example-logger-react-native",
   "description": "Example for using logger in react-native",
   "version": "1.3.0",
+  "private": true,
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
