@@ -1,16 +1,16 @@
 {
     "name": "@salesduck/example-logger-express",
-    "version": "1.0.0",
+    "version": "1.3.0",
     "description": "Example for using logger in nodejs",
     "scripts": {
         "start": "node ./bin/www"
     },
     "dependencies": {
-        "@salesduck/logger": "1.2.0",
-        "@salesduck/format-json": "1.2.0",
-        "@salesduck/format-logstash": "1.2.0",
-        "@salesduck/transport-console": "1.2.0",
-        "@salesduck/transport-fetch": "1.2.0",
+        "@salesduck/format-json": "^1.3.0",
+        "@salesduck/format-logstash": "^1.3.0",
+        "@salesduck/logger": "^1.3.0",
+        "@salesduck/transport-console": "^1.3.0",
+        "@salesduck/transport-fetch": "^1.3.0",
         "cookie-parser": "~1.4.4",
         "debug": "~2.6.9",
         "express": "~4.16.1",
