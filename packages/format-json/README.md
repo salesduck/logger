@@ -1,4 +1,4 @@
-## Format JSON
+# Format JSON
 
 Converts log data into JSON format;
 

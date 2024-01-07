@@ -1,4 +1,4 @@
-## Symbols
+# Symbols
 
 The package stores common types and symbols
 

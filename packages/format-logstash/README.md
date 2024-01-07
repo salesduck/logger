@@ -1,4 +1,4 @@
-## Format Logstash
+# Format Logstash
 
 Converts log data into Logstash format
 

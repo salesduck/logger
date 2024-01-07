@@ -1,5 +1,5 @@
 {
-    "name": "@salesduck/logger-react-native-example",
+    "name": "@salesduck/example-logger-react-native",
     "description": "Example for using logger in react-native",
     "version": "1.0.0",
     "scripts": {
@@ -12,11 +12,11 @@
     "dependencies": {
         "react": "18.1.0",
         "react-native": "0.70.6",
-        "@salesduck/logger": "1.0.0",
-        "@salesduck/format-json": "1.0.0",
-        "@salesduck/format-logstash": "1.0.0",
-        "@salesduck/transport-console": "1.0.0",
-        "@salesduck/transport-fetch": "1.0.0"
+        "@salesduck/logger": "1.2.0",
+        "@salesduck/format-json": "1.2.0",
+        "@salesduck/format-logstash": "1.2.0",
+        "@salesduck/transport-console": "1.2.0",
+        "@salesduck/transport-fetch": "1.2.0"
     },
     "devDependencies": {
         "@babel/core": "^7.12.9",

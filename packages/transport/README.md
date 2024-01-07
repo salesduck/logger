@@ -1,4 +1,4 @@
-## Transport
+# Transport
 
 Abstraction for sending log data to consumers
 
