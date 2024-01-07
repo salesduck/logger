@@ -1,6 +1,7 @@
 {
     "name": "@salesduck/logger-react-example",
     "version": "1.0.0",
+    "description": "Example for using logger in react",
     "dependencies": {
         "@salesduck/logger": "1.0.0",
         "@salesduck/format-json": "1.0.0",

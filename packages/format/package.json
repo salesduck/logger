@@ -1,7 +1,7 @@
 {
     "name": "@salesduck/format-logs",
     "version": "1.0.0",
-    "description": "Format logs",
+    "description": "Allows you to develop your own message format",
     "main": "build/index.js",
     "types": "build/index.d.ts",
     "license": "MIT",

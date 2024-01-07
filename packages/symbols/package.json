@@ -1,6 +1,7 @@
 {
     "name": "@salesduck/symbols-logs",
     "version": "1.1.0",
+    "description": "Common types and symbols",
     "main": "build/index.js",
     "types": "build/index.d.ts",
     "license": "MIT",

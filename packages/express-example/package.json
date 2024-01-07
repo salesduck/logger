@@ -1,6 +1,7 @@
 {
     "name": "@salesduck/logger-express-example",
     "version": "1.0.0",
+    "description": "Example for using logger in nodejs",
     "scripts": {
         "start": "node ./bin/www"
     },

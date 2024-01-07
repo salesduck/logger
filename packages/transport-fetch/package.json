@@ -1,6 +1,7 @@
 {
     "name": "@salesduck/transport-fetch",
     "version": "1.0.0",
+    "description": "Allows you to send log data over the network to the consumer",
     "main": "build/index.js",
     "types": "build/index.d.ts",
     "license": "MIT",
