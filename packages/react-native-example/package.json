@@ -45,5 +45,10 @@
             "json",
             "node"
         ]
+    },
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:salesduck/logger.git",
+        "directory": "packages/react-native-example"
     }
 }
