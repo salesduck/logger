@@ -13,22 +13,22 @@ Abstract logger worked on NodeJS, Browser, React-Native runtime;
 ## Setup
 
 1. Install logger
-```
+```bash
 yarn add @salesduck/logger
 ```
 2. Install format
-```
+```bash
 yarn add @salesduck/format-logstash
 ```
 
 3. Install transport
-```
+```bash
 yarn add @salesduck/transport-console
 ```
 
 ## Usage
 
-```
+```ts
 import { DefaultLogger } from '@salesduck/logger';
 import { LogstashFormat } from '@salesduck/format-logstash';
 import { ConsoleTransport } from '@salesduck/transport-console';
