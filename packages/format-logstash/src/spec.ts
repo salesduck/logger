@@ -19,7 +19,8 @@ describe('LogStashFormat', () => {
                 [MESSAGE]: JSON.stringify({
                     '@message': 'Hello',
                     '@fields': {
-                        hello: 'world'
+                        hello: 'world',
+                        level: 'debug'
                     }
                 }),
                 [LEVEL]: level
@@ -50,7 +51,9 @@ describe('LogStashFormat', () => {
                 JSON.stringify({
                     '@message': 'Hello',
                     '@timestamp': timestamp,
-                    '@fields': {}
+                    '@fields': {
+                        level: 'debug'
+                    }
                 })
             );
         });

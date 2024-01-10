@@ -1,4 +1,4 @@
-import { LogMessage, FormatterLog, MESSAGE } from '@salesduck/symbols-logs';
+import { LogMessage, FormatterLog, MESSAGE, LEVEL } from '@salesduck/symbols-logs';
 import { Formatter } from '@salesduck/format-logs';
 
 export type LogStashFormatterOptions = {
@@ -25,6 +25,8 @@ export class LogStashFormat extends Formatter<LogStashFormatterOptions> {
         if (log.timestamp) {
             logstash['@timestamp'] = timestamp;
         }
+
+        other.level = log[LEVEL].name;
 
         logstash['@fields'] = other;
 
