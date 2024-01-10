@@ -5,6 +5,7 @@
         "lines-around-comment": "off",
         "class-methods-use-this": "off",
         "space-before-function-paren": "off",
-        "multiline-ternary": "off"
+        "multiline-ternary": "off",
+        "no-throw-literal": "off"
     }
 }

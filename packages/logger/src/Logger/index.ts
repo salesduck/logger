@@ -2,8 +2,9 @@ import { LogLevel, Log, Meta, LEVEL } from '@salesduck/symbols-logs';
 import { ILogTransport } from '@salesduck/transport-logs';
 
 export type LoggerOptions = {
-    meta?: Meta;
+    onError?: (err: Error) => void;
     transports?: ILogTransport[];
+    meta?: Meta;
 };
 
 export abstract class Logger {
@@ -12,6 +13,7 @@ export abstract class Logger {
     constructor(options?: LoggerOptions) {
         this.options = {
             transports: [],
+            onError: () => {},
             ...options
         };
     }
@@ -24,18 +26,22 @@ export abstract class Logger {
      * Use methods from logger, like log, warn etc.
      */
     log(level: LogLevel, log: Log): void {
-        for (const transport of this.options.transports) {
-            // NOTE: Skip transports with lower level
-            if (level.priority > transport.getLevel()) continue;
+        try {
+            for (const transport of this.options.transports) {
+                // NOTE: Skip transports with lower level
+                if (level.priority > transport.getLevel()) continue;
 
-            // NOTE: Send message
-            transport.log(
-                transport.getFormat().format({
-                    ...log,
-                    ...this.options.meta,
-                    [LEVEL]: level
-                })
-            );
+                // NOTE: Send message
+                transport.log(
+                    transport.getFormat().format({
+                        ...log,
+                        ...this.options.meta,
+                        [LEVEL]: level
+                    })
+                );
+            }
+        } catch (err) {
+            this.options.onError(err instanceof Error ? err : new Error(String(err)));
         }
     }
 

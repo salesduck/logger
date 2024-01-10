@@ -36,6 +36,35 @@ describe('Logger', () => {
 
             expect(mockedLog).not.toHaveBeenCalled();
         });
+
+        it('catch transport exception how error', () => {
+            const onError = jest.fn();
+
+            const logger = new Test({ onError, transports: [transport] });
+            const error = new Error('Hello');
+
+            transport.log = () => {
+                throw error;
+            };
+
+            logger.log({ name: 'info', priority: 1 }, { message: 'Hello' });
+
+            expect(onError).toHaveBeenCalledWith(error);
+        });
+
+        it('catch transport exception how not error instance', () => {
+            const onError = jest.fn();
+
+            const logger = new Test({ onError, transports: [transport] });
+
+            transport.log = () => {
+                throw 'Hello';
+            };
+
+            logger.log({ name: 'info', priority: 1 }, { message: 'Hello' });
+
+            expect(onError).toHaveBeenCalledWith(new Error('Hello'));
+        });
     });
 
     describe('meta ::', () => {
