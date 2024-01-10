@@ -4,6 +4,7 @@
     "rules": {
         "lines-around-comment": "off",
         "class-methods-use-this": "off",
-        "space-before-function-paren": "off"
+        "space-before-function-paren": "off",
+        "multiline-ternary": "off"
     }
 }
