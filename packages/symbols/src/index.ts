@@ -41,6 +41,6 @@ export type LogMessage = Log & {
 /**
  * Log data returned from log formatters
  */
-export type FormattedLog = LogMessage & {
+export type FormattedLogMessage = LogMessage & {
     [MESSAGE]: string;
 };
