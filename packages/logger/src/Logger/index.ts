@@ -29,6 +29,7 @@ export abstract class Logger<TLog extends Log = Log> {
         try {
             for (const transport of this.options.transports) {
                 console.log('log', JSON.stringify(log));
+                console.log('meta', JSON.stringify(this.options.meta));
                 // NOTE: Skip transports with lower level
                 if (level.priority > transport.getLevel()) continue;
 
