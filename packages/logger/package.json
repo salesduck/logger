@@ -1,6 +1,6 @@
 {
     "name": "@salesduck/logger",
-    "version": "4.0.2",
+    "version": "4.0.3-alpha.0",
     "description": "Allows you to record and transmit messages to the consumer",
     "main": "build/index.js",
     "types": "build/index.d.ts",
