@@ -1,13 +1,13 @@
 import { Log } from '@salesduck/symbols-logs';
 import { Logger } from '@project/Logger';
 
-export interface ILogger {
-    fatal(log: Log): void;
-    error(log: Log): void;
-    warn(log: Log): void;
-    info(log: Log): void;
-    debug(log: Log): void;
-    trace(log: Log): void;
+export interface ILogger<TLog extends Log = Log> {
+    fatal(log: TLog): void;
+    error(log: TLog): void;
+    warn(log: TLog): void;
+    info(log: TLog): void;
+    debug(log: TLog): void;
+    trace(log: TLog): void;
 }
 
 export enum LogLevels {
@@ -22,13 +22,13 @@ export enum LogLevels {
 /**
  * Logger base on most used log levels.
  */
-export class DefaultLogger extends Logger implements ILogger {
+export class DefaultLogger<TLog extends Log = Log> extends Logger<TLog> implements ILogger<TLog> {
     /**
      * Use when one or more key business functionalities
      * are not working and the whole system doesn’t
      * fulfill the business functionalities.
      */
-    fatal(log: Log): void {
+    fatal(log: TLog): void {
         return this.log({ name: 'fatal', priority: LogLevels.FATAL }, log);
     }
 
@@ -37,7 +37,7 @@ export class DefaultLogger extends Logger implements ILogger {
      * working, preventing some functionalities
      * from working correctly.
      */
-    error(log: Log): void {
+    error(log: TLog): void {
         return this.log({ name: 'error', priority: LogLevels.ERROR }, log);
     }
 
@@ -47,7 +47,7 @@ export class DefaultLogger extends Logger implements ILogger {
      * its work and the key business features
      * are operating as expected.
      */
-    warn(log: Log): void {
+    warn(log: TLog): void {
         return this.log({ name: 'warn', priority: LogLevels.WARN }, log);
     }
 
@@ -56,7 +56,7 @@ export class DefaultLogger extends Logger implements ILogger {
      * informative and can be ignored
      * during normal operations.
      */
-    info(log: Log): void {
+    info(log: TLog): void {
         return this.log({ name: 'info', priority: LogLevels.INFO }, log);
     }
 
@@ -65,7 +65,7 @@ export class DefaultLogger extends Logger implements ILogger {
      * to be useful during software debugging when
      * more granular information is needed.
      */
-    debug(log: Log): void {
+    debug(log: TLog): void {
         return this.log({ name: 'debug', priority: LogLevels.DEBUG }, log);
     }
 
@@ -76,7 +76,7 @@ export class DefaultLogger extends Logger implements ILogger {
      * may be useful during extended
      * debugging sessions.
      */
-    trace(log: Log): void {
+    trace(log: TLog): void {
         return this.log({ name: 'trace', priority: LogLevels.TRACE }, log);
     }
 }

@@ -1,10 +1,12 @@
+import { FormattedLogMessage } from '@salesduck/symbols-logs';
 import { DefaultFormatter } from '@salesduck/format-logs';
-import { FormatterLog } from '@salesduck/symbols-logs';
 
 import { Transport } from '.';
 
 class Test extends Transport {
-    log(message: FormatterLog): void {}
+    log(message: FormattedLogMessage): Promise<void> {
+        return Promise.resolve();
+    }
 }
 
 describe('Transport', () => {

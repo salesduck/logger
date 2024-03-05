@@ -1,5 +1,5 @@
 import { ILogFormat, DefaultFormatter } from '@salesduck/format-logs';
-import { FormatterLog } from '@salesduck/symbols-logs';
+import { FormattedLogMessage } from '@salesduck/symbols-logs';
 import { ILogTransport } from '@project/ILogTransport';
 
 export type TransportOptions = {
@@ -15,8 +15,11 @@ export type TransportOptions = {
     formatter?: ILogFormat;
 };
 
-export abstract class Transport<TOptions extends TransportOptions = unknown> implements ILogTransport {
-    protected readonly options: TOptions;
+export abstract class Transport<TOptions extends TransportOptions = TransportOptions> implements ILogTransport {
+    /**
+     * Used to configure transport
+     */
+    public readonly options: TOptions;
 
     constructor(options?: TOptions) {
         this.options = {
@@ -38,5 +41,5 @@ export abstract class Transport<TOptions extends TransportOptions = unknown> imp
     /**
      * Use this method to fix log in system
      */
-    abstract log(message: FormatterLog): void;
+    abstract log(message: FormattedLogMessage): Promise<void>;
 }

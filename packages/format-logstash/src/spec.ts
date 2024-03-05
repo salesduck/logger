@@ -1,13 +1,13 @@
 import { MESSAGE, LEVEL } from '@salesduck/symbols-logs';
 
-import { LogStashFormat } from '.';
+import { LogstashFormat } from '.';
 
 describe('LogStashFormat', () => {
     const level = { name: 'debug', priority: 1 };
 
     describe('format ::', () => {
         it('use default serializer', () => {
-            const format = new LogStashFormat();
+            const format = new LogstashFormat();
 
             const message = { message: 'Hello', [LEVEL]: level, hello: 'world' };
 
@@ -28,7 +28,7 @@ describe('LogStashFormat', () => {
         });
 
         it('user custom serializer', () => {
-            const format = new LogStashFormat({ serializer: () => 'true' });
+            const format = new LogstashFormat({ serializer: () => 'true' });
 
             const message = { message: 'Hello', [LEVEL]: level };
 
@@ -38,7 +38,7 @@ describe('LogStashFormat', () => {
         });
 
         it('with timestamp', () => {
-            const format = new LogStashFormat();
+            const format = new LogstashFormat();
 
             const timestamp = 1704282996;
 

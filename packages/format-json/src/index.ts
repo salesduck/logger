@@ -1,4 +1,4 @@
-import { LogMessage, FormatterLog, MESSAGE } from '@salesduck/symbols-logs';
+import { LogMessage, FormattedLogMessage, MESSAGE } from '@salesduck/symbols-logs';
 import { Formatter } from '@salesduck/format-logs';
 
 export type JsonFormatterOptions = {
@@ -6,14 +6,17 @@ export type JsonFormatterOptions = {
 };
 
 export class JsonFormat extends Formatter<JsonFormatterOptions> {
-    constructor(options: JsonFormatterOptions = { serializer: JSON.stringify }) {
+    /**
+     * NOTE: If you pass serializer: undefined, it will be overwritten default function
+     */
+    constructor(options?: JsonFormatterOptions) {
         super({
-            ...options,
-            serializer: options.serializer
+            serializer: JSON.stringify,
+            ...options
         });
     }
 
-    format(log: LogMessage): FormatterLog {
+    format(log: LogMessage): FormattedLogMessage {
         return {
             ...log,
             [MESSAGE]: this.options.serializer(log)

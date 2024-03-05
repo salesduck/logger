@@ -4,14 +4,14 @@ import { FetchTransport } from '.';
 
 describe('FetchTransport', () => {
     describe('log ::', () => {
-        it('use default init data', () => {
+        it('use default init data', async () => {
             const transport = new FetchTransport({ url: 'https://example.com' });
 
             const func = () => Promise.resolve(new Response());
             const mockedFetch = jest.fn(func);
             global.fetch = mockedFetch;
 
-            transport.log({ message: 'Hello', [MESSAGE]: 'Hello', [LEVEL]: { name: 'info', priority: 0 } });
+            await transport.log({ message: 'Hello', [MESSAGE]: 'Hello', [LEVEL]: { name: 'info', priority: 0 } });
 
             expect(mockedFetch).toHaveBeenCalledWith('https://example.com', {
                 method: 'POST',
@@ -19,7 +19,7 @@ describe('FetchTransport', () => {
             });
         });
 
-        it('use custom init data', () => {
+        it('use custom init data', async () => {
             const headers = { 'content-type': 'application/json' };
 
             const transport = new FetchTransport({
@@ -31,7 +31,7 @@ describe('FetchTransport', () => {
             const mockedFetch = jest.fn(func);
             global.fetch = mockedFetch;
 
-            transport.log({ message: 'Hello', [MESSAGE]: 'Hello', [LEVEL]: { name: 'info', priority: 0 } });
+            await transport.log({ message: 'Hello', [MESSAGE]: 'Hello', [LEVEL]: { name: 'info', priority: 0 } });
 
             expect(mockedFetch).toHaveBeenCalledWith('https://example.com', {
                 headers,
@@ -40,38 +40,35 @@ describe('FetchTransport', () => {
             });
         });
 
-        // TODO: почему-то по тесту обработчик вообще не вызывается
-        it.skip('handle onError', () => {
-            const onError = jest.fn();
+        it('throw network error', async () => {
+            const transport = new FetchTransport({ url: 'https://example.com' });
 
-            const transport = new FetchTransport({ url: 'https://example.com', onError });
-
-            const error = new Error('Something went wrong');
+            const error = new Error('Failed to fetch');
 
             const func = () => Promise.reject(error);
             const mockedFetch = jest.fn(func);
             global.fetch = mockedFetch;
 
-            transport.log({ message: 'Hello', [MESSAGE]: 'Hello', [LEVEL]: { name: 'info', priority: 0 } });
-
-            expect(onError).toHaveBeenCalledWith(error);
+            try {
+                await transport.log({ message: 'Hello', [MESSAGE]: 'Hello', [LEVEL]: { name: 'info', priority: 0 } });
+                expect(true).toBeFalsy();
+            } catch (err) {
+                expect(err).toEqual(error);
+            }
         });
 
-        // TODO: почему-то по тесту обработчик вообще не вызывается
-        it.skip('handle onResponse', () => {
-            const onResponse = jest.fn();
+        it('throw invalid response error', async () => {
+            const transport = new FetchTransport({ url: 'https://example.com' });
 
-            const transport = new FetchTransport({ url: 'https://example.com', onResponse });
-
-            const response = new Response();
-
-            const func = () => Promise.resolve(response);
+            const func = () => Promise.resolve(new Response('Invalid response', { status: 404, statusText: '' }));
             const mockedFetch = jest.fn(func);
             global.fetch = mockedFetch;
 
-            transport.log({ message: 'Hello', [MESSAGE]: 'Hello', [LEVEL]: { name: 'info', priority: 0 } });
-
-            expect(onResponse).toHaveBeenCalledWith(response);
+            try {
+                await transport.log({ message: 'Hello', [MESSAGE]: 'Hello', [LEVEL]: { name: 'info', priority: 0 } });
+            } catch (err) {
+                expect(err).toEqual(new Error('Failed to fetch "https://example.com" with status 404'));
+            }
         });
     });
 });

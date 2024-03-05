@@ -1,4 +1,4 @@
-import { FormatterLog } from '@salesduck/symbols-logs';
+import { FormattedLogMessage } from '@salesduck/symbols-logs';
 import { ILogFormat } from '@salesduck/format-logs';
 
 /**
@@ -7,17 +7,17 @@ import { ILogFormat } from '@salesduck/format-logs';
  */
 export interface ILogTransport {
     /**
-     * Return the current log level
+     * Returns the logging level to which this transport responds
      */
     getLevel(): number;
 
     /**
-     * Return the current log format
+     * Returns the format in which the transport will send data
      */
     getFormat(): ILogFormat;
 
     /**
      * Use this method to fix log in system
      */
-    log(message: FormatterLog): void;
+    log(message: FormattedLogMessage): Promise<void>;
 }

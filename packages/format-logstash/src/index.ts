@@ -1,28 +1,31 @@
-import { LogMessage, FormatterLog, MESSAGE, LEVEL } from '@salesduck/symbols-logs';
+import { LogMessage, FormattedLogMessage, MESSAGE, LEVEL } from '@salesduck/symbols-logs';
 import { Formatter } from '@salesduck/format-logs';
 
-export type LogStashFormatterOptions = {
+export type LogstashFormatterOptions = {
     serializer: (data: unknown) => string;
 };
 
-export class LogStashFormat extends Formatter<LogStashFormatterOptions> {
-    constructor(options: LogStashFormatterOptions = { serializer: JSON.stringify }) {
+export class LogstashFormat extends Formatter<LogstashFormatterOptions> {
+    /**
+     * NOTE: If you pass serializer: undefined, it will be overwritten default function
+     */
+    constructor(options?: LogstashFormatterOptions) {
         super({
-            ...options,
-            serializer: options.serializer
+            serializer: JSON.stringify,
+            ...options
         });
     }
 
-    format(log: LogMessage): FormatterLog {
+    format(log: LogMessage): FormattedLogMessage {
         const { message, timestamp, ...other } = log;
 
         const logstash = {};
 
-        if (log.message) {
+        if (message) {
             logstash['@message'] = message;
         }
 
-        if (log.timestamp) {
+        if (timestamp) {
             logstash['@timestamp'] = timestamp;
         }
 

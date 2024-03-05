@@ -1,4 +1,4 @@
-import { LogMessage, FormattedLog } from '@salesduck/symbols-logs';
+import { LogMessage, FormattedLogMessage } from '@salesduck/symbols-logs';
 
 export interface ILogFormat {
     /**
@@ -6,5 +6,5 @@ export interface ILogFormat {
      * will be sent to the transport in special
      * symbol without change source data
      */
-    format(log: LogMessage): FormattedLog;
+    format(log: LogMessage): FormattedLogMessage;
 }

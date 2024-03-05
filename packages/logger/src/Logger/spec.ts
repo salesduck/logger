@@ -1,16 +1,34 @@
-import { FormatterLog, MESSAGE, LEVEL } from '@salesduck/symbols-logs';
+import { FormattedLogMessage, MESSAGE, LEVEL } from '@salesduck/symbols-logs';
 import { Transport } from '@salesduck/transport-logs';
 
 import { Test } from './mock';
 
 class TestTransport extends Transport {
-    log(message: FormatterLog): Promise<void> {
+    log(message: FormattedLogMessage): Promise<void> {
         return Promise.resolve();
     }
 }
 
 describe('Logger', () => {
     const transport = new TestTransport({ level: 2 });
+
+    describe('constructor ::', () => {
+        it('set default options', () => {
+            const expected = new Test();
+
+            expect(expected.options.transports).toEqual([]);
+            expect(expected.options.onError).not.toBeUndefined();
+        });
+
+        it('set custom options', () => {
+            const onError = () => {};
+
+            const expected = new Test({ onError, transports: [transport] });
+
+            expect(expected.options.transports).toEqual([transport]);
+            expect(expected.options.onError).toBe(onError);
+        });
+    });
 
     const logger = new Test({ transports: [transport] });
 

@@ -1,5 +1,5 @@
 import { Transport, TransportOptions } from '@salesduck/transport-logs';
-import { FormatterLog, MESSAGE } from '@salesduck/symbols-logs';
+import { FormattedLogMessage, MESSAGE } from '@salesduck/symbols-logs';
 
 export type ConsoleTranportOptions = TransportOptions & {
     /**
@@ -9,12 +9,17 @@ export type ConsoleTranportOptions = TransportOptions & {
 };
 
 export class ConsoleTransport extends Transport<ConsoleTranportOptions> {
+    /**
+     * NOTE: If you pass method: undefined, it will be overwritten default function
+     */
     constructor(options?: ConsoleTranportOptions) {
         // NOTE: why console.log? Because supported on every platform
         super({ method: console.log, ...options });
     }
 
-    log(message: FormatterLog): void {
+    log(message: FormattedLogMessage): Promise<void> {
         this.options.method(message[MESSAGE]);
+
+        return Promise.resolve();
     }
 }

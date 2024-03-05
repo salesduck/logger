@@ -1,4 +1,4 @@
-import { LogMessage, FormattedLog } from '@salesduck/symbols-logs';
+import { LogMessage, FormattedLogMessage } from '@salesduck/symbols-logs';
 import { ILogFormat } from '@project/ILogFormatter';
 
 export abstract class Formatter<TOptions = unknown> implements ILogFormat {
@@ -8,5 +8,5 @@ export abstract class Formatter<TOptions = unknown> implements ILogFormat {
         this.options = options;
     }
 
-    abstract format(log: LogMessage): FormattedLog;
+    abstract format(log: LogMessage): FormattedLogMessage;
 }

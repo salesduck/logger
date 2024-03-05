@@ -1,4 +1,4 @@
-import { LogMessage, FormatterLog, MESSAGE, LEVEL } from '@salesduck/symbols-logs';
+import { LogMessage, FormattedLogMessage, MESSAGE, LEVEL } from '@salesduck/symbols-logs';
 import { Formatter } from '@salesduck/format-logs';
 
 export type SimpleFormatterOptions = {
@@ -13,7 +13,7 @@ export class SimpleFormat extends Formatter<SimpleFormatterOptions> {
         });
     }
 
-    format(log: LogMessage): FormatterLog {
+    format(log: LogMessage): FormattedLogMessage {
         const { message, [LEVEL]: level, ...other } = log;
 
         const serialized = (Object.keys(other).length && ` ${this.options.serializer(other)}`) || '';

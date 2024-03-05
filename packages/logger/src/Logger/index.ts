@@ -7,8 +7,8 @@ export type LoggerOptions = {
     meta?: Meta;
 };
 
-export abstract class Logger {
-    protected options: LoggerOptions;
+export abstract class Logger<TLog extends Log = Log> {
+    public readonly options: LoggerOptions;
 
     constructor(options?: LoggerOptions) {
         this.options = {
@@ -25,7 +25,7 @@ export abstract class Logger {
      * WARNING: It's not recommended to use this method directly.
      * Use methods from logger, like log, warn etc.
      */
-    log(level: LogLevel, log: Log): void {
+    log(level: LogLevel, log: TLog): void {
         try {
             for (const transport of this.options.transports) {
                 // NOTE: Skip transports with lower level
@@ -46,8 +46,7 @@ export abstract class Logger {
     }
 
     /**
-     * Allow you to add or replace additional information
-     * for each log
+     * Replace additional information for each log
      */
     meta(meta: Meta = this.options.meta): void {
         this.options.meta = meta;
