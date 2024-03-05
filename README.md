@@ -68,7 +68,7 @@ yarn lerna version --no-private
 5. Publish packages
 
 ```bash
-yarn lerna publish
+yarn lerna publish from-package
 ```
 
 ## TODO:
