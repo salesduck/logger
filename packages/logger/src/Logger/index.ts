@@ -28,20 +28,18 @@ export abstract class Logger<TLog extends Log = Log> {
     log(level: LogLevel, log: TLog): void {
         try {
             for (const transport of this.options.transports) {
-                console.log('log', JSON.stringify(log));
-                console.log('meta', JSON.stringify(this.options.meta));
                 // NOTE: Skip transports with lower level
                 if (level.priority > transport.getLevel()) continue;
 
-                const merged = {
-                    ...this.options.meta,
-                    ...log,
-                    [LEVEL]: level
-                };
-
-                console.log('merged', JSON.stringify(merged));
-
-                transport.log(transport.getFormat().format(merged)).catch(this.options.onError);
+                transport
+                    .log(
+                        transport.getFormat().format({
+                            ...this.options.meta,
+                            ...log,
+                            [LEVEL]: level
+                        })
+                    )
+                    .catch(this.options.onError);
             }
         } catch (err) {
             this.options.onError(err instanceof Error ? err : new Error(String(err)));
