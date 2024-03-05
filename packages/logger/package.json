@@ -1,6 +1,6 @@
 {
     "name": "@salesduck/logger",
-    "version": "1.4.0",
+    "version": "2.0.0",
     "description": "Allows you to record and transmit messages to the consumer",
     "main": "build/index.js",
     "types": "build/index.d.ts",
@@ -19,9 +19,9 @@
         "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand"
     },
     "dependencies": {
-        "@salesduck/format-logs": "^1.3.0",
-        "@salesduck/symbols-logs": "^3.0.0",
-        "@salesduck/transport-logs": "^1.3.0"
+        "@salesduck/format-logs": "^2.0.0",
+        "@salesduck/symbols-logs": "^2.0.0",
+        "@salesduck/transport-logs": "^2.0.0"
     },
     "devDependencies": {
         "@types/jest": "^26.0.23",
