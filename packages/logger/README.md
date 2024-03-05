@@ -44,3 +44,13 @@ class MyLogger extends DefaultLogger {
     }
 }
 ```
+
+You can specify log type
+```ts
+type MyLog = {
+    orderId?: string;
+    userId?: number;
+}
+
+const logger = new DefaultLogger<MyLog>;
+```
