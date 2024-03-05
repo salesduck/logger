@@ -55,6 +55,19 @@ logger.info({ message: 'Hello world' });
 // ~> { message: 'Hello world', 'application': 'name', version: '1.0.0' }
 ```
 
+## Development
+
+1. Increase version
+```bash
+yarn lerna version --no-private
+```
+
+2. Publish packages
+
+```bash
+yarn lerna publish
+```
+
 ## TODO:
 1. Log Rotation
 2. Add format combinations
