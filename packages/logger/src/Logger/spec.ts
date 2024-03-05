@@ -83,6 +83,29 @@ describe('Logger', () => {
 
             expect(onError).toHaveBeenCalledWith(new Error('Hello'));
         });
+
+        it('merge meta to log data', () => {
+            const transport = new TestTransport({ level: 2 });
+
+            const mock = jest.fn();
+            transport.log = mock;
+
+            const logger = new Test({ transports: [transport] });
+
+            logger.meta({ size: 0 });
+
+            logger.log({ name: 'test', priority: 0 }, { message: 'hello', size: 12 });
+
+            expect(mock).toHaveBeenCalledWith({
+                [LEVEL]: {
+                    name: 'test',
+                    priority: 0
+                },
+                [MESSAGE]: 'hello',
+                message: 'hello',
+                size: 12
+            });
+        });
     });
 
     describe('meta ::', () => {

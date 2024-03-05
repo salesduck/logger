@@ -34,8 +34,8 @@ export abstract class Logger<TLog extends Log = Log> {
                 transport
                     .log(
                         transport.getFormat().format({
-                            ...log,
                             ...this.options.meta,
+                            ...log,
                             [LEVEL]: level
                         })
                     )
