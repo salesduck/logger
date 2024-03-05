@@ -1,6 +1,6 @@
 {
     "name": "@salesduck/transport-fetch",
-    "version": "2.0.0",
+    "version": "3.0.0",
     "description": "Allows you to send log data over the network to the consumer",
     "main": "build/index.js",
     "types": "build/index.d.ts",
@@ -22,8 +22,8 @@
         "node": "18"
     },
     "dependencies": {
-        "@salesduck/symbols-logs": "^2.0.0",
-        "@salesduck/transport-logs": "^2.0.0"
+        "@salesduck/symbols-logs": "^3.0.0",
+        "@salesduck/transport-logs": "^3.0.0"
     },
     "devDependencies": {
         "@types/jest": "^26.0.23",
