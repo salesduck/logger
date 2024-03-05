@@ -90,7 +90,7 @@ describe('Logger', () => {
             const mock = jest.fn();
             transport.log = mock;
 
-            const logger = new Test({ transports: [transport] });
+            const logger = new Test({ meta: { size: undefined }, transports: [transport] });
 
             logger.meta({ size: 0 });
 
