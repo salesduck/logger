@@ -57,12 +57,15 @@ logger.info({ message: 'Hello world' });
 
 ## Development
 
-1. Increase version
+1. Make change in package
+2. Rebuild it
+3. Make change in another package and rebuild it
+4. Increase version
 ```bash
 yarn lerna version --no-private
 ```
 
-2. Publish packages
+5. Publish packages
 
 ```bash
 yarn lerna publish

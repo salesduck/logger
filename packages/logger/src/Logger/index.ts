@@ -31,14 +31,15 @@ export abstract class Logger<TLog extends Log = Log> {
                 // NOTE: Skip transports with lower level
                 if (level.priority > transport.getLevel()) continue;
 
-                // NOTE: Send message
-                transport.log(
-                    transport.getFormat().format({
-                        ...log,
-                        ...this.options.meta,
-                        [LEVEL]: level
-                    })
-                );
+                transport
+                    .log(
+                        transport.getFormat().format({
+                            ...log,
+                            ...this.options.meta,
+                            [LEVEL]: level
+                        })
+                    )
+                    .catch(this.options.onError);
             }
         } catch (err) {
             this.options.onError(err instanceof Error ? err : new Error(String(err)));

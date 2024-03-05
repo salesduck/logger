@@ -12,35 +12,28 @@ describe('ConsoleTransport', () => {
         });
 
         it('with default method', () => {
-            const mockedLog = jest.fn();
-            console.log = mockedLog;
-
             const expected = new ConsoleTransport();
 
-            expected.log({ message: 'Hello', [MESSAGE]: 'Hello', [LEVEL]: { name: 'info', priority: 1 } });
-
-            expect(mockedLog).toHaveBeenCalledWith('Hello');
+            expect(expected.options.method).toBe(console.log);
         });
 
         it('with custom method', () => {
-            const mockedLog = jest.fn();
+            const method = () => {};
 
-            const expected = new ConsoleTransport({ method: mockedLog });
+            const expected = new ConsoleTransport({ method });
 
-            expected.log({ message: 'Hello', [MESSAGE]: 'Hello', [LEVEL]: { name: 'info', priority: 1 } });
-
-            expect(mockedLog).toHaveBeenCalledWith('Hello');
+            expect(expected.options.method).toBe(method);
         });
     });
 
     describe('log ::', () => {
-        it('send message to console by log method', () => {
+        it('send message to console by log method', async () => {
             const mockedLog = jest.fn();
             console.log = mockedLog;
 
             const expected = new ConsoleTransport();
 
-            expected.log({ message: 'Hello', [MESSAGE]: 'Hello', [LEVEL]: { name: 'info', priority: 1 } });
+            await expected.log({ message: 'Hello', [MESSAGE]: 'Hello', [LEVEL]: { name: 'info', priority: 1 } });
 
             expect(mockedLog).toHaveBeenCalledWith('Hello');
         });

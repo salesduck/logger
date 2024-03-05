@@ -1,5 +1,5 @@
 import { ILogFormat, DefaultFormatter } from '@salesduck/format-logs';
-import { FormattedLogMessage } from '@salesduck/symbols-logs';
+import { FormattedLogMessage, Log } from '@salesduck/symbols-logs';
 import { ILogTransport } from '@project/ILogTransport';
 
 export type TransportOptions = {

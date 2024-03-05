@@ -25,22 +25,23 @@ export type LogLevel = { name: string; priority: number };
 export type Meta = Record<string, unknown>;
 
 /**
- * Log data passed to any log method
+ * Used to typify methods of the logger itself
+ * Like info, warn, error
  */
-export type Log = Meta & {
+export type Log<TLog extends Meta = Meta> = TLog & {
     message: string;
 };
 
 /**
- * Log data passed to universal log method
+ * Used as input to the formatter
  */
-export type LogMessage = Log & {
+export type LogMessage<TLog extends Meta = Meta> = Log<TLog> & {
     [LEVEL]: LogLevel;
 };
 
 /**
- * Log data returned from log formatters
+ * Used as a result of the formatter and transport input data
  */
-export type FormattedLogMessage = LogMessage & {
+export type FormattedLogMessage<TLog extends Meta = Meta> = LogMessage<TLog> & {
     [MESSAGE]: string;
 };
