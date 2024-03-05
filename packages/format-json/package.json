@@ -1,6 +1,6 @@
 {
     "name": "@salesduck/format-json",
-    "version": "3.0.0",
+    "version": "4.0.0",
     "description": "Transform log message to json format",
     "main": "build/index.js",
     "types": "build/index.d.ts",
@@ -19,8 +19,8 @@
         "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand"
     },
     "dependencies": {
-        "@salesduck/format-logs": "^3.0.0",
-        "@salesduck/symbols-logs": "^3.0.0"
+        "@salesduck/format-logs": "^4.0.0",
+        "@salesduck/symbols-logs": "^4.0.0"
     },
     "devDependencies": {
         "@types/jest": "^26.0.23",
