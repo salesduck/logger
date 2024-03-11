@@ -1,6 +1,6 @@
 {
     "name": "@salesduck/logger",
-    "version": "4.0.4",
+    "version": "4.1.0",
     "description": "Allows you to record and transmit messages to the consumer",
     "main": "build/index.js",
     "types": "build/index.d.ts",
@@ -21,7 +21,7 @@
     "dependencies": {
         "@salesduck/format-logs": "^4.0.0",
         "@salesduck/symbols-logs": "^4.0.0",
-        "@salesduck/transport-logs": "^4.0.0"
+        "@salesduck/transport-logs": "^4.1.0"
     },
     "devDependencies": {
         "@types/jest": "^26.0.23",

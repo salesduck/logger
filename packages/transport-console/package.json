@@ -1,6 +1,6 @@
 {
     "name": "@salesduck/transport-console",
-    "version": "4.0.0",
+    "version": "4.1.0",
     "description": "Allows you to send log data to standard output",
     "main": "build/index.js",
     "types": "build/index.d.ts",
@@ -20,7 +20,7 @@
     },
     "dependencies": {
         "@salesduck/symbols-logs": "^4.0.0",
-        "@salesduck/transport-logs": "^4.0.0"
+        "@salesduck/transport-logs": "^4.1.0"
     },
     "devDependencies": {
         "@types/jest": "^26.0.23",
