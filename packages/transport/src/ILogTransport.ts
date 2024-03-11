@@ -1,4 +1,4 @@
-import { FormattedLogMessage } from '@salesduck/symbols-logs';
+import { FormattedLogMessage, LogLevel } from '@salesduck/symbols-logs';
 import { ILogFormat } from '@salesduck/format-logs';
 
 /**
@@ -7,9 +7,10 @@ import { ILogFormat } from '@salesduck/format-logs';
  */
 export interface ILogTransport {
     /**
-     * Returns the logging level to which this transport responds
+     * Allows you to check whether the transport can
+     * process a message with this level
      */
-    getLevel(): number;
+    canUse(logLevel: LogLevel): boolean;
 
     /**
      * Returns the format in which the transport will send data

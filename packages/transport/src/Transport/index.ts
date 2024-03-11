@@ -1,5 +1,5 @@
 import { ILogFormat, DefaultFormatter } from '@salesduck/format-logs';
-import { FormattedLogMessage, Log } from '@salesduck/symbols-logs';
+import { FormattedLogMessage, LogLevel } from '@salesduck/symbols-logs';
 import { ILogTransport } from '@project/ILogTransport';
 
 export type TransportOptions = {
@@ -13,7 +13,16 @@ export type TransportOptions = {
      * Formats data for the current transport
      */
     formatter?: ILogFormat;
+
+    /**
+     * Decides whether to support sending a message
+     */
+    usingStrategy?: (logLevel: number, transportLevel: number) => boolean;
 };
+
+export const FilterLimitUsingTransportStrategy = (logLevel: number, transportLevel: number) => logLevel <= transportLevel;
+
+export const OnlyOneLevelUsingTransportStrategy = (logLevel: number, transportLevel: number) => logLevel === transportLevel;
 
 export abstract class Transport<TOptions extends TransportOptions = TransportOptions> implements ILogTransport {
     /**
@@ -26,12 +35,13 @@ export abstract class Transport<TOptions extends TransportOptions = TransportOpt
             // NOTE: by default use very low level
             level: 99,
             formatter: new DefaultFormatter(),
+            usingStrategy: FilterLimitUsingTransportStrategy,
             ...options
         };
     }
 
-    getLevel(): number {
-        return this.options.level;
+    canUse(logLevel: LogLevel): boolean {
+        return this.options.usingStrategy(logLevel.priority, this.options.level);
     }
 
     getFormat(): ILogFormat {

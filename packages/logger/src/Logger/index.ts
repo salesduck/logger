@@ -28,8 +28,7 @@ export abstract class Logger<TLog extends Log = Log> {
     log(level: LogLevel, log: TLog): void {
         try {
             for (const transport of this.options.transports) {
-                // NOTE: Skip transports with lower level
-                if (level.priority > transport.getLevel()) continue;
+                if (!transport.canUse(level)) continue;
 
                 transport
                     .log(
@@ -48,6 +47,8 @@ export abstract class Logger<TLog extends Log = Log> {
 
     /**
      * Replace additional information for each log
+     *
+     * TODO: add types fro meta from generic
      */
     meta(meta: Meta = this.options.meta): void {
         this.options.meta = meta;
